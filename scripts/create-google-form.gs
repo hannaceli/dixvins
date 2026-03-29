@@ -127,7 +127,28 @@ function createTravelForm() {
     .setTitle('If yes/maybe: how many spare seats can you offer?')
     .setHelpText('e.g. "2 seats" or "3 seats but only from Le Creusot"');
 
-  // --- Section 5: Food ---
+  // --- Section 5: Activity interest ---
+  form.addSectionHeaderItem()
+    .setTitle('Organised Activities')
+    .setHelpText('Two of our group activities need a headcount for logistics. Let us know your tentative interest — no commitment yet!');
+
+  form.addMultipleChoiceItem()
+    .setTitle('Cycling Expedition to Autun (Monday July 6) — are you interested?')
+    .setHelpText('A group cycle along the flat Voie Verte from Epinac to Autun (13 km), exploring Roman ruins and the medieval cathedral. Bikes provided for all ages.')
+    .setChoiceValues(['Yes, count us in!', 'Probably — tell me more', 'Not for us this time'])
+    .setRequired(true);
+
+  form.addTextItem()
+    .setTitle('If cycling: how many bikes do you need? (adults / kids / child seats)')
+    .setHelpText('e.g. "2 adults, 1 child bike, 1 child seat"');
+
+  form.addMultipleChoiceItem()
+    .setTitle('Lake Day at Lac des Settons (Tuesday July 7) — are you interested?')
+    .setHelpText('A full day at a beautiful lake in the Morvan: sailing, kayak, paddle, inflatable water park, Blue Flag beach. ~1h15 drive.')
+    .setChoiceValues(['Yes, count us in!', 'Probably — tell me more', 'Not for us this time'])
+    .setRequired(true);
+
+  // --- Section 6: Food ---
   form.addSectionHeaderItem()
     .setTitle('Food & Dietary Needs')
     .setHelpText('Help us plan meals for the week.');
