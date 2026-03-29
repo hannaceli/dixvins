@@ -12,7 +12,7 @@ const siteHostname = Astro.site
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Hanna & Jon invite you to Burgundy to celebrate ten years. July 4–11, 2026. La Fabrique des Ducs, Epinac." />
     <meta property="og:title" content={title} />
     <meta property="og:description" content="10-Year Wedding Anniversary Celebration in Burgundy, France. July 4-11, 2026." />
@@ -33,38 +33,60 @@ const siteHostname = Astro.site
         color: #722F37;
         font-weight: 700;
       }
-      .ornament { letter-spacing: 0.3em; }
+      /* Muted gold: thin rules with § (replaces floral ornaments) */
+      .section-rule {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        max-width: 12rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .section-rule::before,
+      .section-rule::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: rgba(201, 169, 110, 0.38);
+      }
+      .section-rule span {
+        color: rgba(201, 169, 110, 0.55);
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 0.95rem;
+        line-height: 1;
+      }
     </style>
   </head>
-  <body class="bg-cream text-charcoal font-serif antialiased">
-    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-sm">
+  <body class="bg-cream text-charcoal font-serif antialiased overflow-x-hidden">
+    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-sm pt-[env(safe-area-inset-top,0px)]">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
+        <div class="flex items-center justify-between min-h-[3.25rem] sm:h-16 py-2 sm:py-0">
           <a href="#hero" class="text-xs font-sans text-charcoal/45 hover:text-charcoal/65 transition-colors tracking-tight truncate max-w-[55vw] sm:max-w-none" title="Home">{siteHostname}</a>
-          <button id="menu-toggle" class="md:hidden p-2 text-charcoal" aria-label="Toggle menu">
+          <button id="menu-toggle" class="md:hidden min-h-[44px] min-w-[44px] flex items-center justify-center p-2 text-charcoal -mr-2" aria-label="Toggle menu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          <div class="hidden md:flex items-center gap-8">
-            <a href="#venue" class="text-sm font-medium text-charcoal/70 hover:text-wine transition-colors">Venue</a>
-            <a href="#getting-there" class="text-sm font-medium text-charcoal/70 hover:text-wine transition-colors">Getting There</a>
-            <a href="#schedule" class="text-sm font-medium text-charcoal/70 hover:text-wine transition-colors">Schedule</a>
-            <a href="#activities" class="text-sm font-medium text-charcoal/70 hover:text-wine transition-colors">Activities</a>
-            <a href="#wine-and-dining" class="text-sm font-medium text-charcoal/70 hover:text-wine transition-colors">Wine & Dining</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScSMKUpWXlexMgfIavlm9XgbkLAVlCeAGSx2-z355DoDqeU3Q/viewform" target="_blank" rel="noopener" class="text-sm font-medium text-charcoal/70 hover:text-wine transition-colors">Travel Form</a>
-            <a href="#practical-info" class="text-sm font-medium text-charcoal/70 hover:text-wine transition-colors">Info</a>
+          <div class="hidden md:flex items-center gap-6 lg:gap-8 flex-wrap justify-end">
+            <a href="#venue" class="text-sm font-medium text-charcoal/70 hover:text-wine transition-colors py-2">Venue</a>
+            <a href="#getting-there" class="text-sm font-medium text-charcoal/70 hover:text-wine transition-colors py-2">Getting There</a>
+            <a href="#schedule" class="text-sm font-medium text-charcoal/70 hover:text-wine transition-colors py-2">Schedule</a>
+            <a href="#activities" class="text-sm font-medium text-charcoal/70 hover:text-wine transition-colors py-2">Activities</a>
+            <a href="#wine-and-dining" class="text-sm font-medium text-charcoal/70 hover:text-wine transition-colors py-2">Wine & Dining</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScSMKUpWXlexMgfIavlm9XgbkLAVlCeAGSx2-z355DoDqeU3Q/viewform" target="_blank" rel="noopener" class="text-sm font-medium text-charcoal/70 hover:text-wine transition-colors py-2">Travel Form</a>
+            <a href="#practical-info" class="text-sm font-medium text-charcoal/70 hover:text-wine transition-colors py-2">Info</a>
           </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden pb-4">
-          <div class="flex flex-col gap-3 pt-2">
-            <a href="#venue" class="mobile-nav-link text-sm font-medium text-charcoal/70 hover:text-wine transition-colors">Venue</a>
-            <a href="#getting-there" class="mobile-nav-link text-sm font-medium text-charcoal/70 hover:text-wine transition-colors">Getting There</a>
-            <a href="#schedule" class="mobile-nav-link text-sm font-medium text-charcoal/70 hover:text-wine transition-colors">Schedule</a>
-            <a href="#activities" class="mobile-nav-link text-sm font-medium text-charcoal/70 hover:text-wine transition-colors">Activities</a>
-            <a href="#wine-and-dining" class="mobile-nav-link text-sm font-medium text-charcoal/70 hover:text-wine transition-colors">Wine & Dining</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScSMKUpWXlexMgfIavlm9XgbkLAVlCeAGSx2-z355DoDqeU3Q/viewform" target="_blank" rel="noopener" class="mobile-nav-link text-sm font-medium text-charcoal/70 hover:text-wine transition-colors">Travel Form</a>
-            <a href="#practical-info" class="mobile-nav-link text-sm font-medium text-charcoal/70 hover:text-wine transition-colors">Info</a>
+          <div class="flex flex-col gap-1 pt-2">
+            <a href="#venue" class="mobile-nav-link text-sm font-medium text-charcoal/70 hover:text-wine transition-colors py-3 min-h-[44px] flex items-center">Venue</a>
+            <a href="#getting-there" class="mobile-nav-link text-sm font-medium text-charcoal/70 hover:text-wine transition-colors py-3 min-h-[44px] flex items-center">Getting There</a>
+            <a href="#schedule" class="mobile-nav-link text-sm font-medium text-charcoal/70 hover:text-wine transition-colors py-3 min-h-[44px] flex items-center">Schedule</a>
+            <a href="#activities" class="mobile-nav-link text-sm font-medium text-charcoal/70 hover:text-wine transition-colors py-3 min-h-[44px] flex items-center">Activities</a>
+            <a href="#wine-and-dining" class="mobile-nav-link text-sm font-medium text-charcoal/70 hover:text-wine transition-colors py-3 min-h-[44px] flex items-center">Wine & Dining</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScSMKUpWXlexMgfIavlm9XgbkLAVlCeAGSx2-z355DoDqeU3Q/viewform" target="_blank" rel="noopener" class="mobile-nav-link text-sm font-medium text-charcoal/70 hover:text-wine transition-colors py-3 min-h-[44px] flex items-center">Travel Form</a>
+            <a href="#practical-info" class="mobile-nav-link text-sm font-medium text-charcoal/70 hover:text-wine transition-colors py-3 min-h-[44px] flex items-center">Info</a>
           </div>
         </div>
       </div>
